@@ -1,0 +1,32 @@
+import {local} from 'wix-storage';
+import wixLocation from 'wix-location';
+let phoneNumber;
+let profileLink;
+let hiringLink;
+$w.onReady(function () {
+	if (local.getItem("member") == "true"){
+		console.log(local.getItem("phoneUser"));
+	 	phoneNumber = local.getItem("phoneUser");
+		profileLink = "/teachers/profile/" + phoneNumber;
+		hiringLink = "/hiring/list/" + phoneNumber;
+		console.log(profileLink);
+		console.log(hiringLink);
+
+	} else {
+		wixLocation.to("/teacher-login");
+	}
+});
+
+
+export function myProfile_click(event) {
+	wixLocation.to(profileLink);
+}
+
+export function hiringOffers_click(event) {
+	wixLocation.to(hiringLink);
+}
+
+export function logout_click(event) {
+	local.clear();
+	wixLocation.to("/");
+}
