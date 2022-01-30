@@ -1,0 +1,12 @@
+import wixLocation from 'wix-location';
+$w.onReady(function () {
+
+});
+
+export function applicationTable_cellSelect(event) {
+	let cellData = event.cellData;
+	let link = '/' + cellData;
+	console.log(link);
+	wixLocation.to(link);
+	
+}
