@@ -1,0 +1,36 @@
+
+
+import wixData from 'wix-data';
+export async function checkUserExists(email){
+    if(typeof email !== 'undefined' && email !==""){
+        let options = {
+            "suppressAuth": true,
+            "suppressHooks": true,
+
+        };
+        //convert to lowercase and remove spaces
+        var _email = email.toLowerCase().split(" ").join("");
+
+        var url = "";
+        return wixData.query("Schools")
+            .eq('email', _email)
+            .find(options)
+            .then( (results) =>{
+                if (results.items.length !=0) {
+                    //returns the first row, if multiple rows with the same email are found
+                    url = results.items[0].phoneNumber;
+                    return url;
+                } else{
+                    return "Error: User not setup. contact admin for help.";
+                }
+            })
+            .catch((error) =>{
+                console.log("Error reading from table: Teachers.\n" + error.message);
+                return "Error: Fetch error trying to get data from table Teachers";
+            });
+            }
+            else{
+                return "Error: Email parameter passed in was invalid"
+            }
+    
+}
