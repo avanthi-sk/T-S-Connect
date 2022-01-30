@@ -1,0 +1,51 @@
+import {local} from 'wix-storage';
+let name;
+let emailUser;
+let phoneUser;
+let link;
+$w.onReady(function () {
+	let firstName = $w('#firstName').value;
+	let lastName = $w('#lastName').value;
+	name = firstName + " " + lastName;
+	emailUser = $w('#email').value;
+	phoneUser = $w('#phoneNumber').value;
+	//local.setItem("phoneUser", phoneUser);
+	link = "teachers/profile/public/" + phoneUser;
+	console.log(firstName, lastName, emailUser, phoneUser);
+	local.setItem("phoneUser", phoneUser);
+	local.setItem("name", name);
+	local.setItem("emailUser", emailUser);
+	console.log(local.getItem("emailUser"));
+	local.setItem("profileLink", link);
+	local.setItem("member", "true");
+	console.log(local.getItem("member"));
+	console.log(local.getItem("name"));
+	console.log(local.getItem("link"))
+	console.log(local.getItem("phoneUser"));
+	
+});
+
+
+export function updateInfo_click(event) {
+	let firstName = $w('#firstName').value;
+	console.log(firstName);
+	let lastName = $w('#lastName').value;
+	name = firstName + " " + lastName;
+	emailUser = $w('#email').value;
+	phoneUser = $w('#phoneNumber').value;
+	local.setItem("phoneUser", phoneUser);
+	link = "teachers/profile/public/" + phoneUser;
+	console.log(firstName, lastName, emailUser, phoneUser);
+	console.log(local.getItem("phoneUser"));
+
+	local.setItem("name", name);
+	local.setItem("emailUser", emailUser);
+	console.log(local.getItem("emailUser"));
+	local.setItem("profileLink", link);
+	local.setItem("member", "true");
+
+	console.log(local.getItem("member")); 
+}
+
+
+	
