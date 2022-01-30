@@ -1,0 +1,39 @@
+import {local } from 'wix-storage';
+import wixData from 'wix-data';
+
+$w.onReady(function () {
+	$w('#message').hide();
+});
+
+export function hireButton_click(event) {
+	$w("#message").show();
+	
+}
+
+export function submit_click(event) {
+	let message = $w("#messageText").value;
+	let id = $w("#lblphone").text;
+	let toInsert = {
+		"schoolId": local.getItem("schoolProfileLink"),
+		//"applyId": session.getItem("schoolLink"),
+		"schoolName":local.getItem("schoolName"),
+		"schoolEmail":local.getItem("schoolEmail"),
+		"schoolPhoneNumber": local.getItem("schoolPhone"),
+		"message": message,
+		"subJob": local.getItem("subJob"),
+		"subDescription": local.getItem("subDescrip"),
+		"title": id
+	};
+	console.log(local.getItem("schoolProfileLink"));
+	console.log(local.getItem("schoolName"));
+	console.log(local.getItem("schoolEmail"));
+	console.log(local.getItem("schoolPhone"))
+	wixData.insert("Teacher_Applications", toInsert)
+	.then( (results) => {
+		let item = results; //see item below
+	} )
+	.catch( (err) => {
+		let errorMsg = err;
+	} );
+	$w('#message').hide();
+}
