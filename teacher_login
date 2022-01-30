@@ -1,0 +1,35 @@
+import wixLocation from 'wix-location';
+import {checkUserExists} from 'backend/teacher_login_functions'
+import {local} from 'wix-storage';
+local.setItem("member", "false");
+let userEmail = "";
+
+$w.onReady(function(){
+$w('#incorrectlbl').hide();
+})
+
+export async function loginTeacher_click(event) {
+	
+    let email = $w("#emailLogin").value;
+    let password = $w("#passwordLogin").value;
+    userEmail = email.toLowerCase().split(" ").join("");
+    console.log(userEmail);
+    
+    console.log("Logging in");
+    let newLink = await checkUserExists(userEmail);
+    console.log(newLink);
+    console.log(newLink);
+    if(newLink.substring(0,5) !== "Error"){
+        let realLink = "/teachers/profile/" + newLink;
+        console.log(realLink);
+        
+        //console.log(value); 
+        wixLocation.to(realLink);
+    }else{
+        $w('#incorrectlbl').show();
+        console.log("Error occurred: \n" + newLink);
+    }
+   
+    
+    
+}
