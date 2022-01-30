@@ -1,0 +1,13 @@
+import wixLocation from 'wix-location';
+
+$w.onReady(function () {
+	
+});
+
+
+
+export function schoolOffers_cellSelect(event) {
+	let cellData = event.cellData;
+	console.log(cellData);
+	wixLocation.to(cellData); 
+}
