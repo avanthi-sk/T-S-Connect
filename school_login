@@ -1,0 +1,9 @@
+import wixLocation from 'wix-location';
+import {checkUserExists} from 'backend/schools_login_functions'
+import {local} from 'wix-storage';
+let userEmail = "";
+local.setItem("member", "false");
+$w.onReady(function(){
+    $w('#incorrectlbl').hide();
+    console.log("Hello")
+})
