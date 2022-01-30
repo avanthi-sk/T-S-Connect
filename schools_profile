@@ -1,0 +1,39 @@
+import {local} from 'wix-storage';
+
+$w.onReady(function () {
+	let schoolName = $w('#schoolName').value;
+	let email = $w('#email').value;
+	let phoneUser = $w('#phoneNumber').value;
+	let subJob = $w('#substituteJob').value;
+	let subDescrip = $w('#substitueDescriptionn').value;
+	let link = "/schools/profile/" + phoneUser
+	
+	local.setItem("schoolProfileLink",link );
+	local.setItem("schoolName", schoolName);
+	local.setItem("schoolEmail", email);
+	local.setItem("schoolPhone", phoneUser);
+	local.setItem("subJob", subJob);
+	local.setItem("subDescrip", subDescrip);
+	local.setItem("member", "true");
+	console.log(local.getItem("schoolPhone"))
+
+});
+
+
+export function updateInfo_click(event) {
+	let schoolName = $w('#schoolName').value;
+	let email = $w('#email').value;
+	let phoneUser = $w('#phoneNumber').value;
+	let subJob = $w('#substituteJob').value;
+	let subDescrip = $w('#substitueDescriptionn').value;
+	let link = "/schools/profile/" + phoneUser
+	
+	local.setItem("schoolProfileLink",link );
+	local.setItem("schoolName", schoolName);
+	local.setItem("schoolEmail", email);
+	local.setItem("schoolPhone", phoneUser);
+	local.setItem("subJob", subJob);
+	local.setItem("subDescrip", subDescrip);
+	local.setItem("member", "true");
+	console.log(local.getItem("schoolPhone"))
+}
