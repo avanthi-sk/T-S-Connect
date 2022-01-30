@@ -1,0 +1,40 @@
+import {local} from 'wix-storage';
+import wixData from 'wix-data';
+
+$w.onReady(function () {
+	$w("#applyBox").hide();
+	
+});
+
+export function apply_click(event) {
+	$w("#applyBox").show();
+	
+	
+}
+
+
+export function submit_click(event) {
+	let schoolPhone = $w("#schoolPhone").text;
+	let coverLetter = $w("#coverLetter").value
+
+	let toInsert = {
+		"applierId": local.getItem("profileLink"),
+		//"applyId": session.getItem("schoolLink"),
+		"applierName":local.getItem("name"),
+		"applierEmail":local.getItem("emailUser"),
+		"applierPhone": local.getItem("phoneUser"),
+		"message": coverLetter,
+		"applyId": schoolPhone
+	};
+	console.log(local.getItem("profileLink"));
+	console.log(local.getItem("name"));
+	console.log(local.getItem("emailUser"));
+	wixData.insert("Hirings_Applications", toInsert)
+	.then( (results) => {
+		let item = results; //see item below
+	} )
+	.catch( (err) => {
+		let errorMsg = err;
+	} );
+	$w('#applyBox').hide();
+}
