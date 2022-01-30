@@ -1,0 +1,11 @@
+import {local} from 'wix-storage';
+import wixLocation from 'wix-location';
+$w.onReady(function () {
+	console.log(local.getItem("member"))
+	let memberStatus = local.getItem("member")
+
+	if(memberStatus != "true"){
+		console.log("Not a member")
+		wixLocation.to("/")
+	}
+});
