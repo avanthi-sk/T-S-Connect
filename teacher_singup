@@ -1,0 +1,13 @@
+import wixUsers from 'wix-users';
+import wixLocation from 'wix-location';
+ 
+$w.onReady(function(){  
+    $w('#signUp').onClick(function (){    
+        let email = $w('#email').value; 
+        let password = $w('#password').value;   
+        wixUsers.register(email,password)   
+        .then(()=>{
+            wixLocation.to('/teacher-login'); 
+            })
+        })
+    })
